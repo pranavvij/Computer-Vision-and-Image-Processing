@@ -1,0 +1,20 @@
+import cv2
+from math import cos, sin 
+from matplotlib import pyplot as plt
+import numpy
+
+image_path = '/Users/pranavvij/Desktop/task3/pos_13.jpg'
+pointer_path = '/Users/pranavvij/Desktop/task3/small.jpg'
+
+pointer = cv2.imread(pointer_path)
+image = cv2.imread(image_path)
+
+def find_pointer(image):
+	image_1 = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+	max_dimension = max(image_1.shape)
+	scale = 700 / max_dimension
+	image_1 = cv2.resize(image, None, fx=scale, fy=scale)
+	image_blur = cv2.GausianBlur(image_1, (7,7), 0)
+	image_blur_hsv = cv2.cvtColor(image_blur, cv2.COLOR_RGB2HSV)
+
+
